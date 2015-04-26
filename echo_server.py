@@ -22,7 +22,7 @@ def server(log_buffer=sys.stderr):
     # TODO: bind your new sock 'sock' to the address above and begin to listen
     #       for incoming connections
     sock.bind(address)
-    sock.listen(10)
+    sock.listen(1)
 
     try:
 
@@ -67,7 +67,7 @@ def server(log_buffer=sys.stderr):
 
                     else:
 
-                        conn.close()
+                        break
 
             finally:
 
@@ -76,9 +76,10 @@ def server(log_buffer=sys.stderr):
                 #       created above when a client connected.  Replace the
                 #       call to `pass` below, which is only there to prevent
                 #       syntax problems
-                sock.close()
+                #sock.close()
+                pass
 
-            #conn.close()
+                ## Note: do I need to close the conn - sock ?
 
     except KeyboardInterrupt:
 

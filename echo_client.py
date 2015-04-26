@@ -34,7 +34,6 @@ def client(msg, log_buffer=sys.stderr):
         #       Make sure that you log each chunk you receive.  Use the print
         #       statement below to do it. (The tests expect this log format)
 
-        chunk = ''
         chunk = sock.recv(16)
 
         print >>log_buffer, 'received "{0}"'.format(chunk)
@@ -50,7 +49,7 @@ def client(msg, log_buffer=sys.stderr):
 
 
 if __name__ == '__main__':
-    
+
     if len(sys.argv) != 2:
         usg = '\nusage: python echo_client.py "this is my message"\n'
         print >>sys.stderr, usg
