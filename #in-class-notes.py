@@ -22,3 +22,8 @@ response = ms_socket.recv(4096)
 response
 
 ms_socket.close()
+
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM, socket.IPPROTO_IP)
+sock.connect(('127.0.0.1', 10000))
+sock.sendall('testing 123')
+sock.close()

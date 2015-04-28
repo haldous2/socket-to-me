@@ -11,7 +11,7 @@ def make_buffers(string, buffsize=16):
 
 class EchoTestCase(unittest.TestCase):
     """tests for the echo server and client"""
-    connection_msg = 'connecting to localhost port 10000'
+    connection_msg = 'connecting to 127.0.0.1 port 10000'
     sending_msg = 'sending "{0}"'
     received_msg = 'received "{0}"'
     closing_msg = 'closing socket'
@@ -62,7 +62,7 @@ class EchoTestCase(unittest.TestCase):
         lines = client_output.strip().split('\n')
         first_line = lines.pop(0)
         self.assertEqual(first_line, self.connection_msg,
-                         "Unexpected connection message")
+                         "Unexpected connection message:" + first_line + " : " + self.connection_msg)
         send_msg = lines.pop(0)
         last_line = lines.pop()
         self.assertEqual(last_line, self.closing_msg,

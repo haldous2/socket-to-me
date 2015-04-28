@@ -5,6 +5,8 @@ import sys
 def client(msg, log_buffer=sys.stderr):
 
     server_address = ('127.0.0.1', 10000)
+    buffsize = 16
+    response = ''
 
     # TODO: Replace the following line with your code which will instantiate
     #       a TCP socket with IPv4 Addressing, call the socket you make 'sock'
@@ -34,9 +36,17 @@ def client(msg, log_buffer=sys.stderr):
         #       Make sure that you log each chunk you receive.  Use the print
         #       statement below to do it. (The tests expect this log format)
 
-        chunk = sock.recv(16)
+        # Initial chunk (not of goonies type)
+        while True:
 
-        print >>log_buffer, 'received "{0}"'.format(chunk)
+            chunk = sock.recv(buffsize)
+
+            print >>log_buffer, 'received "{0}"'.format(chunk)
+
+            if len(chunk) < buffsize:
+                sock.close()
+                response += chunk
+                break
 
     finally:
 
